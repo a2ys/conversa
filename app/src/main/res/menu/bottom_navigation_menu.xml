@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/chatsFragment"
+        android:enabled="true"
+        android:icon="@drawable/forum_icon"
+        android:title="Chats"/>
+    <item
+        android:id="@+id/storiesFragment"
+        android:enabled="true"
+        android:icon="@drawable/updates_icon"
+        android:title="Updates"/>
+    <item
+        android:id="@+id/callHistoryFragment"
+        android:enabled="true"
+        android:icon="@drawable/call_icon"
+        android:title="Call History"/>
+</menu>
