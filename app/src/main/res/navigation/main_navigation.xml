@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/chatsFragment">
+
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.a2ys.conversa.fragments.main.ChatsFragment"
+        android:label="fragment_chats"
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_chatsFragment_to_storiesFragment"
+            app:destination="@id/storiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storiesFragment"
+        android:name="com.a2ys.conversa.fragments.main.StoriesFragment"
+        android:label="fragment_stories"
+        tools:layout="@layout/fragment_stories" >
+        <action
+            android:id="@+id/action_storiesFragment_to_callHistoryFragment"
+            app:destination="@id/callHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/callHistoryFragment"
+        android:name="com.a2ys.conversa.fragments.main.CallHistoryFragment"
+        android:label="fragment_call_history"
+        tools:layout="@layout/fragment_call_history" />
+</navigation>

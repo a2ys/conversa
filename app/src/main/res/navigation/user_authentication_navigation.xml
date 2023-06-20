@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_authentication_navigation"
+    app:startDestination="@id/authChooserFragment">
+    <fragment
+        android:id="@+id/authChooserFragment"
+        android:name="com.a2ys.conversa.fragments.authentication.AuthChooserFragment"
+        android:label="fragment_auth_chooser"
+        tools:layout="@layout/fragment_auth_chooser" />
+</navigation>
