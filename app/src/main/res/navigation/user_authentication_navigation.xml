@@ -8,5 +8,23 @@
         android:id="@+id/authChooserFragment"
         android:name="com.a2ys.conversa.fragments.authentication.AuthChooserFragment"
         android:label="fragment_auth_chooser"
-        tools:layout="@layout/fragment_auth_chooser" />
+        tools:layout="@layout/fragment_auth_chooser" >
+        <action
+            android:id="@+id/action_authChooserFragment_to_phoneNumberFragment"
+            app:destination="@id/phoneNumberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneNumberFragment"
+        android:name="com.a2ys.conversa.fragments.authentication.PhoneNumberFragment"
+        android:label="fragment_phone_number"
+        tools:layout="@layout/fragment_phone_number" >
+        <action
+            android:id="@+id/action_phoneNumberFragment_to_otpVerificationFragment"
+            app:destination="@id/otpVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpVerificationFragment"
+        android:name="com.a2ys.conversa.fragments.authentication.OtpVerificationFragment"
+        android:label="fragment_otp_verification"
+        tools:layout="@layout/fragment_otp_verification" />
 </navigation>
