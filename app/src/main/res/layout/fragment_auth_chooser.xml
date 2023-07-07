@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="32dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.authentication.AuthChooserFragment">
+    tools:context=".authentication.fragments.AuthChooserFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/header_welcome"
@@ -32,36 +32,40 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
+        style="@style/TextAppearance.Conversa.DisplayMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:text="Continue with your"
-        app:layout_constraintTop_toBottomOf="@id/header_conversa"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextAppearance.Conversa.DisplayMedium" />
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_conversa"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/email_auth_button"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginTop="32dp"
-        style="@style/Widget.Material3.Button.OutlinedButton" />
+        android:text="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/phone_auth_button"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_auth_button"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginTop="16dp"
-        style="@style/Widget.Material3.Button.OutlinedButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_auth_button"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
