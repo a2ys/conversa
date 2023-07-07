@@ -1,4 +1,4 @@
-package com.a2ys.conversa.activities
+package com.a2ys.conversa.authentication.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
