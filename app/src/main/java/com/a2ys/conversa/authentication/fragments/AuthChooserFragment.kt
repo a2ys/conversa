@@ -1,4 +1,4 @@
-package com.a2ys.conversa.fragments.authentication
+package com.a2ys.conversa.authentication.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
