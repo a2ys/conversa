@@ -6,7 +6,7 @@
     app:startDestination="@id/authChooserFragment">
     <fragment
         android:id="@+id/authChooserFragment"
-        android:name="com.a2ys.conversa.fragments.authentication.AuthChooserFragment"
+        android:name="com.a2ys.conversa.authentication.fragments.AuthChooserFragment"
         android:label="fragment_auth_chooser"
         tools:layout="@layout/fragment_auth_chooser" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/phoneNumberFragment"
-        android:name="com.a2ys.conversa.fragments.authentication.PhoneNumberFragment"
+        android:name="com.a2ys.conversa.authentication.fragments.phoneNumberVerification.PhoneNumberFragment"
         android:label="fragment_phone_number"
         tools:layout="@layout/fragment_phone_number" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/otpVerificationFragment"
-        android:name="com.a2ys.conversa.fragments.authentication.OtpVerificationFragment"
+        android:name="com.a2ys.conversa.authentication.fragments.phoneNumberVerification.OtpVerificationFragment"
         android:label="fragment_otp_verification"
         tools:layout="@layout/fragment_otp_verification" />
 </navigation>
