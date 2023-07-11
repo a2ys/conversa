@@ -17,9 +17,6 @@
             android:exported="false" />
         <activity
             android:name=".landingpage.activities.LandingPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".authentication.activities.UserAuthenticationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".authentication.activities.UserAuthenticationActivity"
+            android:exported="false" />
         <activity
             android:name=".main.activities.MainActivity"
             android:exported="false" />

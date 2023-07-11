@@ -51,7 +51,6 @@ class PhoneNumberFragment : Fragment() {
 
                 binding.submit.visibility = View.VISIBLE
                 binding.progressCircular.visibility = View.GONE
-
             } else {
                 val options = PhoneAuthOptions.newBuilder(auth)
                     .setPhoneNumber("+91" + binding.phoneNumber.editText!!.text.trim().toString())
