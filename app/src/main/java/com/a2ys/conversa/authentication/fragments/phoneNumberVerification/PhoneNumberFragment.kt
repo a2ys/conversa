@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.a2ys.conversa.R
-import com.a2ys.conversa.activities.MainActivity
+import com.a2ys.conversa.main.activities.MainActivity
 import com.a2ys.conversa.databinding.FragmentPhoneNumberBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
