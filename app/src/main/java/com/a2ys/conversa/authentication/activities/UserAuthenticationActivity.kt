@@ -2,8 +2,6 @@ package com.a2ys.conversa.authentication.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.a2ys.conversa.R
-import com.a2ys.conversa.databinding.ActivityMainBinding
 import com.a2ys.conversa.databinding.ActivityUserAuthenticationBinding
 
 class UserAuthenticationActivity : AppCompatActivity() {
