@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.FragmentOtpVerificationBinding
-import com.a2ys.conversa.landingpage.LandingPageActivity
+import com.a2ys.conversa.landingpage.activities.LandingPageActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -59,7 +59,6 @@ class OtpVerificationFragment : Fragment() {
                 val credential = PhoneAuthProvider.getCredential(verificationId!!, binding.otp.editText!!.text.trim().toString())
                 signInWithPhoneAuthCredential(credential)
             }
-
         }
 
         return binding.root
