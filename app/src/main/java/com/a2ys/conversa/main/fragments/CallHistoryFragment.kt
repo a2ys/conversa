@@ -1,4 +1,4 @@
-package com.a2ys.conversa.fragments.main
+package com.a2ys.conversa.main.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
