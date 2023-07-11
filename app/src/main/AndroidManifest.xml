@@ -13,7 +13,10 @@
         android:theme="@style/Theme.Conversa"
         tools:targetApi="31">
         <activity
-            android:name=".landingpage.LandingPageActivity"
+            android:name=".authentication.activities.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".landingpage.activities.LandingPageActivity"
             android:exported="false" />
         <activity
             android:name=".authentication.activities.UserAuthenticationActivity"
@@ -25,8 +28,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
-            android:exported="false"></activity>
+            android:name=".main.activities.MainActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
