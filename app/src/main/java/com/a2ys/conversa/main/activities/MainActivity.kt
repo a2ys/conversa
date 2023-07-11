@@ -1,8 +1,7 @@
-package com.a2ys.conversa.activities
+package com.a2ys.conversa.main.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
