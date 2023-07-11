@@ -46,7 +46,7 @@ class PhoneNumberFragment : Fragment() {
                     "Please enter a valid phone number!",
                     Snackbar.LENGTH_SHORT
                 )
-                    .setAction("Got It") {}
+                    .setAction("Got it") {}
                     .show()
 
                 binding.submit.visibility = View.VISIBLE
@@ -75,12 +75,12 @@ class PhoneNumberFragment : Fragment() {
             when (e) {
                 is FirebaseAuthInvalidCredentialsException -> {
                     Snackbar.make(requireActivity().findViewById(R.id.container), "Please check the credentials provided!", Snackbar.LENGTH_SHORT)
-                        .setAction("Got It"){}
+                        .setAction("Got it") {}
                         .show()
                 }
                 is FirebaseTooManyRequestsException -> {
                     Snackbar.make(requireActivity().findViewById(R.id.container), "Please contact the developer!", Snackbar.LENGTH_SHORT)
-                        .setAction("Got It"){}
+                        .setAction("Got it") {}
                         .show()
                 }
             }
@@ -88,13 +88,13 @@ class PhoneNumberFragment : Fragment() {
 
         override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
             Snackbar.make(requireActivity().findViewById(R.id.container), "OTP has been sent!", Snackbar.LENGTH_SHORT)
-                .setAction("Got It"){}
+                .setAction("Got it") {}
                 .show()
 
             binding.submit.visibility = View.VISIBLE
             binding.progressCircular.visibility = View.GONE
 
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+            val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE) ?: return
             with (sharedPref.edit()) {
                 putString("ver_id", verificationId)
                 putString("number", binding.phoneNumber.editText!!.text.trim().toString())
@@ -118,7 +118,7 @@ class PhoneNumberFragment : Fragment() {
                 } else {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         Snackbar.make(requireActivity().findViewById(R.id.container), "Invalid code!", Snackbar.LENGTH_SHORT)
-                            .setAction("Got It"){}
+                            .setAction("Got it") {}
                             .show()
 
                         binding.submit.visibility = View.VISIBLE
