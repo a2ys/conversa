@@ -1,8 +1,8 @@
 package com.a2ys.conversa.landingpage.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.a2ys.conversa.R
 import com.a2ys.conversa.authentication.activities.InfoActivity
 import com.a2ys.conversa.authentication.activities.UserAuthenticationActivity
