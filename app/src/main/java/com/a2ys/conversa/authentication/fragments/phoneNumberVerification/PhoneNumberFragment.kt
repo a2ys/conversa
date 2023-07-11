@@ -101,7 +101,7 @@ class PhoneNumberFragment : Fragment() {
                 apply()
             }
 
-            Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation).navigate(R.id.action_phoneNumberFragment_to_otpVerificationFragment)
+            Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation_fragment).navigate(R.id.action_phoneNumberFragment_to_otpVerificationFragment)
         }
     }
 

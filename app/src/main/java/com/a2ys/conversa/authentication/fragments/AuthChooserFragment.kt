@@ -31,7 +31,7 @@ class AuthChooserFragment : Fragment() {
         }
 
         binding.phoneAuthButton.setOnClickListener {
-            Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation).navigate(R.id.action_authChooserFragment_to_phoneNumberFragment)
+            Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation_fragment).navigate(R.id.action_authChooserFragment_to_phoneNumberFragment)
         }
 
         return binding.root

@@ -36,12 +36,10 @@ class OtpVerificationFragment : Fragment() {
         val verificationId = sharedPref.getString("ver_id", defaultValue)
         val phoneNumber = sharedPref.getString("number", defaultValue)
 
-        val navController = Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation)
-
         binding.phn.text = "+91 $phoneNumber"
 
         binding.change.setOnClickListener {
-            navController.navigateUp()
+            Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation_fragment).navigateUp()
         }
 
         binding.submit.setOnClickListener {
