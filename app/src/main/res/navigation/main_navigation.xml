@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/chatsFragment"
-        android:name="com.a2ys.conversa.fragments.main.ChatsFragment"
+        android:name="com.a2ys.conversa.main.fragments.ChatsFragment"
         android:label="fragment_chats"
         tools:layout="@layout/fragment_chats" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/storiesFragment"
-        android:name="com.a2ys.conversa.fragments.main.StoriesFragment"
+        android:name="com.a2ys.conversa.main.fragments.StoriesFragment"
         android:label="fragment_stories"
         tools:layout="@layout/fragment_stories" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/callHistoryFragment"
-        android:name="com.a2ys.conversa.fragments.main.CallHistoryFragment"
+        android:name="com.a2ys.conversa.main.fragments.CallHistoryFragment"
         android:label="fragment_call_history"
         tools:layout="@layout/fragment_call_history" />
 </navigation>
