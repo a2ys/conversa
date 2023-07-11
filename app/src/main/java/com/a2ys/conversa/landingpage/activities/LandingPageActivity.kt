@@ -1,11 +1,14 @@
-package com.a2ys.conversa.landingpage
+package com.a2ys.conversa.landingpage.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.a2ys.conversa.R
+import com.a2ys.conversa.authentication.activities.InfoActivity
+import com.a2ys.conversa.authentication.activities.UserAuthenticationActivity
 import com.a2ys.conversa.databinding.ActivityLandingPageBinding
+import com.a2ys.conversa.main.activities.MainActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -29,6 +32,7 @@ class LandingPageActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val currentUser = auth.currentUser
+
         if (currentUser != null) {
             val user = Firebase.auth.currentUser
             user?.let {
@@ -43,15 +47,17 @@ class LandingPageActivity : AppCompatActivity() {
                         startActivity(Intent(applicationContext, MainActivity::class.java))
                         finish()
                     } else {
-                        startActivity(Intent(applicationContext, ConnectorActivity::class.java))
+                        startActivity(Intent(applicationContext, InfoActivity::class.java))
                         finish()
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Contact the developer!", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(findViewById(R.id.container), "Please contact the developer!", Snackbar.LENGTH_SHORT)
+                        .setAction("Got it") {}
+                        .show()
                 }
             }
         } else {
-            startActivity(Intent(applicationContext, InitialActivity::class.java))
+            startActivity(Intent(applicationContext, UserAuthenticationActivity::class.java))
             finish()
         }
     }
