@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_chats" >
         <action
             android:id="@+id/action_chatsFragment_to_storiesFragment"
-            app:destination="@id/storiesFragment" />
+            app:destination="@id/storiesFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/storiesFragment"
@@ -21,7 +25,11 @@
         tools:layout="@layout/fragment_stories" >
         <action
             android:id="@+id/action_storiesFragment_to_callHistoryFragment"
-            app:destination="@id/callHistoryFragment" />
+            app:destination="@id/callHistoryFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/callHistoryFragment"

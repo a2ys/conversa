@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_auth_chooser" >
         <action
             android:id="@+id/action_authChooserFragment_to_phoneNumberFragment"
-            app:destination="@id/phoneNumberFragment" />
+            app:destination="@id/phoneNumberFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/phoneNumberFragment"
@@ -20,7 +24,11 @@
         tools:layout="@layout/fragment_phone_number" >
         <action
             android:id="@+id/action_phoneNumberFragment_to_otpVerificationFragment"
-            app:destination="@id/otpVerificationFragment" />
+            app:destination="@id/otpVerificationFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/otpVerificationFragment"
