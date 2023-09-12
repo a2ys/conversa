@@ -27,7 +27,7 @@ class AuthChooserFragment : Fragment() {
                 Snackbar.LENGTH_INDEFINITE
             )
                 .setAction("Sure!") {}
-                .show();
+                .show()
         }
 
         binding.phoneAuthButton.setOnClickListener {
