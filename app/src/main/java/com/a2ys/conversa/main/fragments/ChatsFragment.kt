@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.a2ys.conversa.databinding.FragmentChatsBinding
+import com.a2ys.conversa.models.Chat
+import com.a2ys.conversa.utils.ChatAdapter
 
 class ChatsFragment : Fragment() {
 
@@ -16,6 +20,21 @@ class ChatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentChatsBinding.inflate(layoutInflater, container, false)
+
+        val recyclerView: RecyclerView = binding.recyclerView
+        val chatList = mutableListOf<Chat>()
+        val adapter: ChatAdapter = ChatAdapter(chatList)
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val newChat1: Chat = Chat("ABCD", "Hello")
+        val newChat2: Chat = Chat("XYZ", "Hi")
+
+        chatList.add(newChat1)
+        chatList.add(newChat2)
+
+        adapter.notifyItemInserted(chatList.size - 1)
 
         return binding.root
     }
