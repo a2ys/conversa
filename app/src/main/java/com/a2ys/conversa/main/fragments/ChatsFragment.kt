@@ -19,17 +19,17 @@ class ChatsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentChatsBinding.inflate(layoutInflater, container, false)
 
+        binding = FragmentChatsBinding.inflate(layoutInflater, container, false)
         val recyclerView: RecyclerView = binding.recyclerView
         val chatList = mutableListOf<Chat>()
-        val adapter: ChatAdapter = ChatAdapter(chatList)
+        val adapter = ChatAdapter(chatList)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val newChat1: Chat = Chat("ABCD", "Hello")
-        val newChat2: Chat = Chat("XYZ", "Hi")
+        val newChat1 = Chat("ABC", "Hello")
+        val newChat2 = Chat("XYZ", "Hi")
 
         chatList.add(newChat1)
         chatList.add(newChat2)
