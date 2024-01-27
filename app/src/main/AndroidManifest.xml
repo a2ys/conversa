@@ -16,10 +16,10 @@
         android:theme="@style/Theme.Conversa"
         tools:targetApi="31">
         <activity
-            android:name=".authentication.activities.InfoActivity"
+            android:name="dev.a2ys.conversa.authentication.activities.InfoActivity"
             android:exported="false" />
         <activity
-            android:name=".landingpage.activities.LandingPageActivity"
+            android:name="dev.a2ys.conversa.landingpage.activities.LandingPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +28,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".authentication.activities.UserAuthenticationActivity"
+            android:name="dev.a2ys.conversa.authentication.activities.UserAuthenticationActivity"
             android:exported="false" />
         <activity
-            android:name=".main.activities.MainActivity"
+            android:name="dev.a2ys.conversa.main.activities.MainActivity"
             android:exported="false" />
 
         <meta-data
