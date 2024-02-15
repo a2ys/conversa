@@ -3,15 +3,13 @@ package dev.a2ys.conversa.main.activities
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
-import com.a2ys.conversa.Manifest
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.ActivityMainBinding
 import dev.a2ys.conversa.utils.Constants
@@ -54,18 +52,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    with(NotificationManagerCompat.from(this)) {
-                        notify(NOTIFICATION_ID, builder.build())
-                    }
-                } else {
-                    // Permission not granted, handle accordingly (e.g., show a message to the user)
-                }
-            }
-            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-    }
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+//        when (requestCode) {
+//            PERMISSION_REQUEST_CODE -> {
+//                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    with(NotificationManagerCompat.from(this)) {
+//                        notify(NOTIFICATION_ID, builder.build())
+//                    }
+//                } else {
+//                    // Permission not granted, handle accordingly (e.g., show a message to the user)
+//                }
+//            }
+//            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        }
+//    }
 }

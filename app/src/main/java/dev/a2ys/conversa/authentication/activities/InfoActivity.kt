@@ -144,13 +144,9 @@ class InfoActivity : AppCompatActivity() {
         if (binding.dateOfBirth.editText!!.text.toString().isEmpty()) binding.dateOfBirth.error = error
         if (binding.genderMenu.editText!!.text.toString().isEmpty()) binding.genderMenu.error = error
 
-        if (binding.name.editText!!.text.toString().isNotEmpty() &&
-            binding.dateOfBirth.editText!!.text.toString().isNotEmpty() &&
-            binding.genderMenu.editText!!.text.toString().isNotEmpty()
-        ) {
-            return true
-        }
-        return false
+        return binding.name.editText!!.text.toString().isNotEmpty() &&
+                binding.dateOfBirth.editText!!.text.toString().isNotEmpty() &&
+                binding.genderMenu.editText!!.text.toString().isNotEmpty()
     }
 
 }
