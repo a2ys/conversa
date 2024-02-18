@@ -23,10 +23,8 @@ public class AgeCalculator {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String dateTimeString = dtf.format(now).split(" ")[0];
-        System.out.println(dateTimeString);
 
         String[] dateTimeStringList = dateTimeString.split("/");
-        System.out.println(Arrays.toString(dateTimeStringList));
 
         return new int[]{Integer.parseInt(dateTimeStringList[0]), Integer.parseInt(dateTimeStringList[1]), Integer.parseInt(dateTimeStringList[2])};
     }
