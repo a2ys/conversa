@@ -3,16 +3,16 @@
     <item
         android:id="@+id/chatsFragment"
         android:enabled="true"
-        android:icon="@drawable/forum_icon"
+        android:icon="@drawable/chat_selector"
         android:title="Chats"/>
     <item
         android:id="@+id/storiesFragment"
         android:enabled="true"
-        android:icon="@drawable/updates_icon"
+        android:icon="@drawable/sparkle_selector"
         android:title="Updates"/>
     <item
         android:id="@+id/callHistoryFragment"
         android:enabled="true"
-        android:icon="@drawable/call_icon"
-        android:title="Call History"/>
+        android:icon="@drawable/phone_selector"
+        android:title="Calls"/>
 </menu>
