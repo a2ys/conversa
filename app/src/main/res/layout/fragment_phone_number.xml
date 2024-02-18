@@ -41,7 +41,7 @@
             android:autofillHints="phone"
             app:endIconMode="clear_text"
             android:hint="Phone Number"
-            app:startIconDrawable="@drawable/round_local_phone_24"
+            app:startIconDrawable="@drawable/phone_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heading"
