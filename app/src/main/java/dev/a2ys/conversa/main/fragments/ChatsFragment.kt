@@ -23,18 +23,18 @@ class ChatsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var illustration: ImageView
     private lateinit var caption: MaterialTextView
-    private val chatList = mutableListOf<Chat>()
+    private lateinit var chatList: MutableList<Chat>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentChatsBinding.inflate(layoutInflater, container, false)
         recyclerView = binding.recyclerView
         illustration = binding.searchIllustration
         caption = binding.caption
 
+        chatList = mutableListOf<Chat>()
         val adapter = ChatAdapter(chatList)
 
         recyclerView.adapter = adapter
