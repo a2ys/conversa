@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.ActivityInfoBinding
 import dev.a2ys.conversa.main.activities.MainActivity
 import dev.a2ys.conversa.models.User
@@ -13,8 +14,12 @@ import dev.a2ys.conversa.utils.AgeCalculator
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
 import java.util.TimeZone
@@ -69,21 +74,42 @@ class InfoActivity : AppCompatActivity() {
             binding.progressCircular.visibility = View.VISIBLE
 
             if (validateEntries()) {
-                val currentUser = User(binding.name.editText!!.text.toString(),
-                    binding.dateOfBirth.editText!!.text.toString(),
-                    binding.genderMenu.editText!!.text.toString())
-
+                val username = binding.username.editText!!.text.toString()
                 val dateOfBirthSplitted = binding.dateOfBirth.editText!!.text.toString().split("/")
                 val ageOfUser = ageCalculator.getAge(dateOfBirthSplitted[2].toInt(), dateOfBirthSplitted[1].toInt(), dateOfBirthSplitted[0].toInt())
 
                 if (ageOfUser >= 16) {
-                    database.child("registeredUsers").child(uid).setValue(currentUser)
+                    checkUsernameUnique(username) { isUnique ->
+                        if (isUnique) {
+                            val currentUser = User(
+                                binding.name.editText!!.text.toString(),
+                                binding.dateOfBirth.editText!!.text.toString(),
+                                binding.genderMenu.editText!!.text.toString()
+                            )
 
-                    binding.submit.visibility = View.VISIBLE
-                    binding.progressCircular.visibility = View.INVISIBLE
+                            database.child("registeredUsers").child(uid).child("basicInfo")
+                                .setValue(currentUser)
 
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
-                    finish()
+                            database.child("registeredUsers").child(uid).child("username").setValue(username)
+
+                            binding.submit.visibility = View.VISIBLE
+                            binding.progressCircular.visibility = View.INVISIBLE
+
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                            finish()
+                        } else {
+                            Snackbar.make(
+                                binding.rootView,
+                                "Username already taken!",
+                                Snackbar.LENGTH_LONG
+                            )
+                                .setAction("Try Again") {}
+                                .show()
+
+                            binding.submit.visibility = View.VISIBLE
+                            binding.progressCircular.visibility = View.INVISIBLE
+                        }
+                    }
                 } else if (ageOfUser in 0..15) {
                     Snackbar.make(binding.rootView,
                         "You must be at least 16 years old!",
@@ -149,4 +175,22 @@ class InfoActivity : AppCompatActivity() {
                 binding.genderMenu.editText!!.text.toString().isNotEmpty()
     }
 
+    private fun checkUsernameUnique(username: String, onResult: (Boolean) -> Unit) {
+        val usersRef = database.child("registeredUsers")
+        usersRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val isUnique = snapshot.childrenCount == 0L
+                onResult(isUnique)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Snackbar.make(binding.rootView, "Please contact the developer!", Snackbar.LENGTH_SHORT)
+                    .setAction("Got it") {}
+                    .show()
+
+                onResult(false)
+            }
+        })
+    }
 }

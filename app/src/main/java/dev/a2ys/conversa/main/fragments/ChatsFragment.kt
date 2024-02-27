@@ -42,14 +42,14 @@ class ChatsFragment : Fragment() {
 
         updateUI()
 
-        val newChat1 = Chat("ABC", "Hello")
-        val newChat2 = Chat("XYZ", "Hi")
-
-        chatList.add(newChat1)
-        chatList.add(newChat2)
-
-        updateUI()
-        adapter.notifyItemInserted(chatList.size - 1)
+//        val newChat1 = Chat("ABC", "Hello")
+//        val newChat2 = Chat("XYZ", "Hi")
+//
+//        chatList.add(newChat1)
+//        chatList.add(newChat2)
+//
+//        updateUI()
+//        adapter.notifyItemInserted(chatList.size - 1)
 
         return binding.root
     }
