@@ -46,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heading"
             android:layout_marginTop="128dp"
-            app:startIconDrawable="@drawable/round_alternate_email_24">
+            app:startIconDrawable="@drawable/at">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email"
             android:layout_marginTop="16dp"
-            app:startIconDrawable="@drawable/round_password_24">
+            app:startIconDrawable="@drawable/password_bold">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
