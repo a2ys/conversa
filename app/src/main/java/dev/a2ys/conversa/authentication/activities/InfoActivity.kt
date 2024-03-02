@@ -1,27 +1,27 @@
 package dev.a2ys.conversa.authentication.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import com.a2ys.conversa.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.a2ys.conversa.databinding.ActivityInfoBinding
-import dev.a2ys.conversa.main.activities.MainActivity
-import dev.a2ys.conversa.models.User
-import dev.a2ys.conversa.utils.AgeCalculator
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import dev.a2ys.conversa.main.activities.MainActivity
+import dev.a2ys.conversa.models.User
+import dev.a2ys.conversa.utils.AgeCalculator
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 import java.util.TimeZone
 
@@ -31,6 +31,7 @@ class InfoActivity : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var database: DatabaseReference
     private lateinit var ageCalculator: AgeCalculator
+    private var isDatePickerShown = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,19 +55,26 @@ class InfoActivity : AppCompatActivity() {
                 .build()
 
         binding.dobSelector.setOnClickListener {
-            datePicker.show(supportFragmentManager, "DATE_OF_BIRTH_PICKER")
+            if (!isDatePickerShown) {
+                datePicker.show(supportFragmentManager, "DATE_OF_BIRTH_PICKER")
+                isDatePickerShown = true
 
-            datePicker.addOnPositiveButtonClickListener {
-                val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                calendar.timeInMillis = datePicker.selection!!
+                datePicker.addOnDismissListener {
+                    isDatePickerShown = false
+                }
 
-                val year = calendar.get(Calendar.YEAR)
-                val month = calendar.get(Calendar.MONTH) + 1
-                val day = calendar.get(Calendar.DAY_OF_MONTH)
+                datePicker.addOnPositiveButtonClickListener {
+                    val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                    calendar.timeInMillis = datePicker.selection!!
 
-                val selectedDate = "${day}/${month}/${year}"
+                    val year = calendar.get(Calendar.YEAR)
+                    val month = calendar.get(Calendar.MONTH) + 1
+                    val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-                binding.dateOfBirth.editText!!.setText(selectedDate)
+                    val selectedDate = "${day}/${month}/${year}"
+
+                    binding.dateOfBirth.editText!!.setText(selectedDate)
+                }
             }
         }
 
@@ -76,53 +84,72 @@ class InfoActivity : AppCompatActivity() {
 
             if (validateEntries()) {
                 val username = binding.username.editText!!.text.toString()
-                val dateOfBirthSplitted = binding.dateOfBirth.editText!!.text.toString().split("/")
-                val ageOfUser = ageCalculator.getAge(dateOfBirthSplitted[2].toInt(), dateOfBirthSplitted[1].toInt(), dateOfBirthSplitted[0].toInt())
+                val dateOfBirth = binding.dateOfBirth.editText!!.text.toString()
 
-                if (ageOfUser >= 16) {
-                    checkUsernameUnique(username) { isUnique ->
-                        if (isUnique) {
-                            val currentUser = User(
-                                binding.name.editText!!.text.toString(),
-                                binding.dateOfBirth.editText!!.text.toString(),
-                                binding.genderMenu.editText!!.text.toString()
+                lifecycleScope.launch {
+                    try {
+                        val ageOfUser = calculateAge(dateOfBirth)
+                        if (ageOfUser >= 16) {
+                            val isUnique = checkUsernameUnique(username)
+
+                            if (isUnique) {
+                                val currentUser = User(
+                                    binding.name.editText!!.text.toString(),
+                                    binding.dateOfBirth.editText!!.text.toString(),
+                                    binding.genderMenu.editText!!.text.toString()
+                                )
+
+                                database.child("registeredUsers").child(uid).child("basicInfo")
+                                    .setValue(currentUser)
+
+                                database.child("registeredUsers").child(uid).child("username")
+                                    .setValue(username)
+
+                                binding.submit.visibility = View.VISIBLE
+                                binding.progressCircular.visibility = View.INVISIBLE
+
+                                startActivity(Intent(applicationContext, MainActivity::class.java))
+                                finish()
+                            } else {
+                                Snackbar.make(
+                                    binding.rootView,
+                                    "Username already taken!",
+                                    Snackbar.LENGTH_LONG
+                                )
+                                    .setAction("Try Again") {}
+                                    .show()
+
+                                binding.submit.visibility = View.VISIBLE
+                                binding.progressCircular.visibility = View.INVISIBLE
+                            }
+                        } else if (ageOfUser in 0..15) {
+                            Snackbar.make(
+                                binding.rootView,
+                                "You must be at least 16 years old!",
+                                Snackbar.LENGTH_LONG
                             )
-
-                            database.child("registeredUsers").child(uid).child("basicInfo")
-                                .setValue(currentUser)
-
-                            database.child("registeredUsers").child(uid).child("username").setValue(username)
-
-                            binding.submit.visibility = View.VISIBLE
-                            binding.progressCircular.visibility = View.INVISIBLE
-
-                            startActivity(Intent(applicationContext, MainActivity::class.java))
-                            finish()
+                                .setAction("Got It!") {}
+                                .show()
                         } else {
                             Snackbar.make(
                                 binding.rootView,
-                                "Username already taken!",
+                                "You cannot be born in the future!",
                                 Snackbar.LENGTH_LONG
                             )
-                                .setAction("Try Again") {}
+                                .setAction("😂") {}
                                 .show()
-
-                            binding.submit.visibility = View.VISIBLE
-                            binding.progressCircular.visibility = View.INVISIBLE
                         }
+                    } catch (e: Exception) {
+                        Log.e("ERROR", "Error processing user data: ${e.message}")
+                        Snackbar.make(
+                            binding.rootView,
+                            "An error occurred. Please try again.",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    } finally {
+                        binding.submit.visibility = View.VISIBLE
+                        binding.progressCircular.visibility = View.INVISIBLE
                     }
-                } else if (ageOfUser in 0..15) {
-                    Snackbar.make(binding.rootView,
-                        "You must be at least 16 years old!",
-                        Snackbar.LENGTH_LONG)
-                        .setAction("Got It!") {}
-                        .show()
-                } else {
-                    Snackbar.make(binding.rootView,
-                        "You cannot be born in the future!",
-                        Snackbar.LENGTH_LONG)
-                        .setAction("😂") {}
-                        .show()
                 }
             }
 
@@ -176,22 +203,14 @@ class InfoActivity : AppCompatActivity() {
                 binding.genderMenu.editText!!.text.toString().isNotEmpty()
     }
 
-    private fun checkUsernameUnique(username: String, onResult: (Boolean) -> Unit) {
+    private suspend fun checkUsernameUnique(username: String): Boolean = withContext(Dispatchers.IO) {
         val usersRef = database.child("registeredUsers")
-        usersRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val isUnique = snapshot.childrenCount == 0L
-                onResult(isUnique)
-            }
+        val snapshot = usersRef.orderByChild("username").equalTo(username).get().await()
+        snapshot.childrenCount == 0L
+    }
 
-            override fun onCancelled(error: DatabaseError) {
-                Snackbar.make(binding.rootView, "Please contact the developer!", Snackbar.LENGTH_SHORT)
-                    .setAction("Got it") {}
-                    .show()
-
-                onResult(false)
-            }
-        })
+    private suspend fun calculateAge(dateOfBirth: String): Int = withContext(Dispatchers.Default) {
+        val dateOfBirthSplitted = dateOfBirth.split("/")
+        ageCalculator.getAge(dateOfBirthSplitted[2].toInt(), dateOfBirthSplitted[1].toInt(), dateOfBirthSplitted[0].toInt())
     }
 }
