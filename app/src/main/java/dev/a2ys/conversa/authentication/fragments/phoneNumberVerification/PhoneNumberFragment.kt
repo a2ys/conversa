@@ -54,6 +54,9 @@ class PhoneNumberFragment : Fragment() {
             .setCallbacks(callbacks)
             .build()
 
+        binding.submit.visibility = View.GONE
+        binding.progressCircular.visibility = View.VISIBLE
+
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
@@ -89,6 +92,8 @@ class PhoneNumberFragment : Fragment() {
                     navigateToMainActivity()
                 } else {
                     showError("Invalid code!")
+                    binding.submit.visibility = View.VISIBLE
+                    binding.progressCircular.visibility = View.GONE
                 }
             }
     }

@@ -32,29 +32,22 @@ class OtpVerificationFragment : Fragment() {
         auth = Firebase.auth
 
         val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
-        val defaultValue = "NULL"
-        val verificationId = sharedPref.getString("ver_id", defaultValue)
-        val phoneNumber = sharedPref.getString("number", defaultValue)
+        val verificationId = sharedPref.getString("ver_id", null)
+        val phoneNumber = sharedPref.getString("number", null)
 
         binding.phn.text = "+91 $phoneNumber"
 
         binding.change.setOnClickListener {
-            Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation_fragment).navigateUp()
+            navigateToPhoneNumberFragment()
         }
 
         binding.submit.setOnClickListener {
-            binding.submit.visibility = View.GONE
-            binding.progressCircular.visibility = View.VISIBLE
+            val otp = binding.otp.editText!!.text.trim().toString()
 
-            if (binding.otp.editText!!.text.trim().toString().length < 6) {
-                Snackbar.make(requireActivity().findViewById(R.id.container), "Please enter a valid OTP!", Snackbar.LENGTH_SHORT)
-                    .setAction("Got it") {}
-                    .show()
-
-                binding.submit.visibility = View.VISIBLE
-                binding.progressCircular.visibility = View.GONE
+            if (otp.length != 6) {
+                showError("Please enter a valid OTP!")
             } else {
-                val credential = PhoneAuthProvider.getCredential(verificationId!!, binding.otp.editText!!.text.trim().toString())
+                val credential = PhoneAuthProvider.getCredential(verificationId!!, otp)
                 signInWithPhoneAuthCredential(credential)
             }
         }
@@ -63,25 +56,35 @@ class OtpVerificationFragment : Fragment() {
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        binding.submit.visibility = View.GONE
+        binding.progressCircular.visibility = View.VISIBLE
+
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    binding.submit.visibility = View.VISIBLE
-                    binding.progressCircular.visibility = View.GONE
-
-                    val intent = Intent(requireContext(), LandingPageActivity::class.java)
-                    startActivity(intent)
-                    requireActivity().finish()
+                    navigateToLandingPage()
                 } else {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        Snackbar.make(requireActivity().findViewById(R.id.container), "Invalid code!", Snackbar.LENGTH_SHORT)
-                            .setAction("Got It") {}
-                            .show()
-
+                        showError("Invalid code!")
                         binding.submit.visibility = View.VISIBLE
                         binding.progressCircular.visibility = View.GONE
                     }
                 }
             }
+    }
+
+    private fun showError(message: String) {
+        Snackbar.make(requireActivity().findViewById(R.id.container), message, Snackbar.LENGTH_SHORT)
+            .setAction("Got it") {}
+            .show()
+    }
+
+    private fun navigateToPhoneNumberFragment() {
+        Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation_fragment)
+            .navigateUp()
+    }
+    private fun navigateToLandingPage() {
+        startActivity(Intent(requireContext(), LandingPageActivity::class.java))
+        requireActivity().finish()
     }
 }
