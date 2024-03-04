@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +23,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.Calendar
 import java.util.TimeZone
+
 
 class InfoActivity : AppCompatActivity() {
 
@@ -52,16 +52,13 @@ class InfoActivity : AppCompatActivity() {
         val datePicker =
             MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select Date of Birth")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build()
 
         binding.dobSelector.setOnClickListener {
             if (!isDatePickerShown) {
                 datePicker.show(supportFragmentManager, "DATE_OF_BIRTH_PICKER")
                 isDatePickerShown = true
-
-                datePicker.addOnDismissListener {
-                    isDatePickerShown = false
-                }
 
                 datePicker.addOnPositiveButtonClickListener {
                     val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
@@ -99,53 +96,35 @@ class InfoActivity : AppCompatActivity() {
                                     binding.genderMenu.editText!!.text.toString()
                                 )
 
-                                database.child("registeredUsers").child(uid).child("basicInfo")
-                                    .setValue(currentUser)
+                                lifecycleScope.launch {
+                                    try {
+                                        database.child("registeredUsers").child(uid).child("basicInfo")
+                                            .setValue(currentUser)
+                                        database.child("registeredUsers").child(uid).child("username")
+                                            .setValue(username)
 
-                                database.child("registeredUsers").child(uid).child("username")
-                                    .setValue(username)
-
-                                binding.submit.visibility = View.VISIBLE
-                                binding.progressCircular.visibility = View.INVISIBLE
-
-                                startActivity(Intent(applicationContext, MainActivity::class.java))
-                                finish()
+                                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                                        finish()
+                                    } catch (e: Exception) {
+                                        showError("An error occurred. Please try again.")
+                                    } finally {
+                                        binding.submit.visibility = View.VISIBLE
+                                        binding.progressCircular.visibility = View.INVISIBLE
+                                    }
+                                }
                             } else {
-                                Snackbar.make(
-                                    binding.rootView,
-                                    "Username already taken!",
-                                    Snackbar.LENGTH_LONG
-                                )
-                                    .setAction("Try Again") {}
-                                    .show()
+                                showError("Username already taken!", "Try Again")
 
                                 binding.submit.visibility = View.VISIBLE
                                 binding.progressCircular.visibility = View.INVISIBLE
                             }
                         } else if (ageOfUser in 0..15) {
-                            Snackbar.make(
-                                binding.rootView,
-                                "You must be at least 16 years old!",
-                                Snackbar.LENGTH_LONG
-                            )
-                                .setAction("Got It!") {}
-                                .show()
+                            showError("You must be at least 16 years old!")
                         } else {
-                            Snackbar.make(
-                                binding.rootView,
-                                "You cannot be born in the future!",
-                                Snackbar.LENGTH_LONG
-                            )
-                                .setAction("😂") {}
-                                .show()
+                            showError("You cannot be born in the future!", "😂")
                         }
                     } catch (e: Exception) {
-                        Log.e("ERROR", "Error processing user data: ${e.message}")
-                        Snackbar.make(
-                            binding.rootView,
-                            "An error occurred. Please try again.",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        showError("An error occurred. Please try again.", "Ok!")
                     } finally {
                         binding.submit.visibility = View.VISIBLE
                         binding.progressCircular.visibility = View.INVISIBLE
@@ -157,38 +136,25 @@ class InfoActivity : AppCompatActivity() {
             binding.progressCircular.visibility = View.INVISIBLE
         }
 
-        binding.name.editText!!.addTextChangedListener(object : TextWatcher {
+        val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.name.error = null
+                when (s) {
+                    binding.name.editText?.text -> binding.name.error = null
+                    binding.dateOfBirth.editText?.text -> binding.dateOfBirth.error = null
+                    binding.genderMenu.editText?.text -> binding.genderMenu.error = null
+                    binding.username.editText?.text -> binding.username.error = null
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {}
+        }
 
-        })
-
-        binding.dateOfBirth.editText!!.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.dateOfBirth.error = null
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-
-        })
-
-        binding.genderMenu.editText!!.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.genderMenu.error = null
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-
-        })
+        binding.name.editText!!.addTextChangedListener(textWatcher)
+        binding.dateOfBirth.editText!!.addTextChangedListener(textWatcher)
+        binding.genderMenu.editText!!.addTextChangedListener(textWatcher)
+        binding.username.editText!!.addTextChangedListener(textWatcher)
     }
 
     private fun validateEntries() : Boolean {
@@ -197,10 +163,12 @@ class InfoActivity : AppCompatActivity() {
         if (binding.name.editText!!.text.toString().isEmpty()) binding.name.error = error
         if (binding.dateOfBirth.editText!!.text.toString().isEmpty()) binding.dateOfBirth.error = error
         if (binding.genderMenu.editText!!.text.toString().isEmpty()) binding.genderMenu.error = error
+        if (binding.username.editText!!.text.toString().isEmpty()) binding.username.error = error
 
         return binding.name.editText!!.text.toString().isNotEmpty() &&
                 binding.dateOfBirth.editText!!.text.toString().isNotEmpty() &&
-                binding.genderMenu.editText!!.text.toString().isNotEmpty()
+                binding.genderMenu.editText!!.text.toString().isNotEmpty() &&
+                binding.username.editText!!.text.toString().isNotEmpty()
     }
 
     private suspend fun checkUsernameUnique(username: String): Boolean = withContext(Dispatchers.IO) {
@@ -212,5 +180,15 @@ class InfoActivity : AppCompatActivity() {
     private suspend fun calculateAge(dateOfBirth: String): Int = withContext(Dispatchers.Default) {
         val dateOfBirthSplitted = dateOfBirth.split("/")
         ageCalculator.getAge(dateOfBirthSplitted[2].toInt(), dateOfBirthSplitted[1].toInt(), dateOfBirthSplitted[0].toInt())
+    }
+
+    private fun showError(message: String, action: String = "Got It!") {
+        Snackbar.make(
+            binding.submit,
+            message,
+            Snackbar.LENGTH_SHORT
+        )
+            .setAction(action) {}
+            .show()
     }
 }
