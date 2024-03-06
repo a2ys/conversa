@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import dev.a2ys.conversa.main.activities.MainActivity
+import dev.a2ys.conversa.models.BasicInfo
 import dev.a2ys.conversa.models.User
 import dev.a2ys.conversa.utils.AgeCalculator
 import kotlinx.coroutines.Dispatchers
@@ -86,17 +87,18 @@ class InfoActivity : AppCompatActivity() {
 
                             if (isUnique) {
                                 val currentUser = User(
-                                    binding.name.editText!!.text.toString(),
-                                    binding.dateOfBirth.editText!!.text.toString(),
-                                    binding.genderMenu.editText!!.text.toString()
+                                    uid,
+                                    BasicInfo(
+                                        binding.name.editText!!.text.toString(),
+                                        binding.dateOfBirth.editText!!.text.toString(),
+                                        binding.genderMenu.editText!!.text.toString(),
+                                    ),
+                                    username
                                 )
 
                                 lifecycleScope.launch {
                                     try {
-                                        database.child("registeredUsers").child(uid).child("basicInfo")
-                                            .setValue(currentUser)
-                                        database.child("registeredUsers").child(uid).child("username")
-                                            .setValue(username)
+                                        database.child("registeredUsers").child(uid).setValue(currentUser)
 
                                         startActivity(Intent(applicationContext, MainActivity::class.java))
                                         finish()

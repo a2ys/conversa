@@ -24,7 +24,7 @@ class AuthChooserFragment : Fragment() {
             Snackbar.make(
                 requireActivity().findViewById(R.id.user_authentication_navigation_fragment),
                 "This feature will be implemented soon!",
-                Snackbar.LENGTH_INDEFINITE
+                Snackbar.LENGTH_SHORT
             )
                 .setAction("Sure!") {}
                 .show()

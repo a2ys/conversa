@@ -83,6 +83,7 @@ class OtpVerificationFragment : Fragment() {
         Navigation.findNavController(requireActivity(), R.id.user_authentication_navigation_fragment)
             .navigateUp()
     }
+
     private fun navigateToLandingPage() {
         startActivity(Intent(requireContext(), LandingPageActivity::class.java))
         requireActivity().finish()

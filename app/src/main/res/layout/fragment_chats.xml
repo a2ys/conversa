@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,33 +9,42 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_height="match_parent"/>
 
-    <ImageView
-        android:id="@+id/search_illustration"
-        android:layout_width="224dp"
-        android:layout_height="224dp"
-        android:src="@drawable/no_chats"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/caption"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/seed"
-        android:padding="32dp"
-        android:text="where dem chats at?"
-        app:layout_constraintTop_toBottomOf="@id/search_illustration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextAppearance.Conversa.HeadlineSmall"
-        android:textAlignment="center"/>
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/search_illustration"
+            android:layout_width="224dp"
+            android:layout_height="224dp"
+            android:src="@drawable/no_chats"
+            android:layout_gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/seed"
+            android:padding="32dp"
+            android:text="where dem chats at?"
+            app:layout_constraintTop_toBottomOf="@id/search_illustration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/TextAppearance.Conversa.HeadlineSmall"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"
+        android:contentDescription=""
+        android:text="Start Chat"
+        app:icon="@drawable/logo_icon"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

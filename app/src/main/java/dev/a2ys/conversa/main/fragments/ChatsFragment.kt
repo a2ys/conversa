@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.FragmentChatsBinding
 import com.google.android.material.textview.MaterialTextView
 import dev.a2ys.conversa.models.Chat
@@ -41,6 +43,11 @@ class ChatsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         updateUI()
+
+        binding.extendedFab.setOnClickListener {
+            Navigation.findNavController(requireActivity(), R.id.main_navigation)
+                .navigate(R.id.action_chatsFragment_to_userSearchFragment)
+        }
 
 //        val newChat1 = Chat("ABC", "Hello")
 //        val newChat2 = Chat("XYZ", "Hi")

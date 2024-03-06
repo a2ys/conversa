@@ -15,8 +15,11 @@
             app:destination="@id/storiesFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
+            app:popEnterAnim="@anim/fab_exit_anim"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_chatsFragment_to_userSearchFragment"
+            app:destination="@id/userSearchFragment"/>
     </fragment>
     <fragment
         android:id="@+id/storiesFragment"
@@ -36,4 +39,9 @@
         android:name="dev.a2ys.conversa.main.fragments.CallHistoryFragment"
         android:label="fragment_call_history"
         tools:layout="@layout/fragment_call_history" />
+    <fragment
+        android:id="@+id/userSearchFragment"
+        android:name="dev.a2ys.conversa.main.fragments.UserSearchFragment"
+        android:label="fragment_user_search"
+        tools:layout="@layout/fragment_user_search" />
 </navigation>
