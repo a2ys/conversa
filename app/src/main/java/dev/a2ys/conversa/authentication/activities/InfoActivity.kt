@@ -31,7 +31,6 @@ class InfoActivity : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var database: DatabaseReference
     private lateinit var ageCalculator: AgeCalculator
-    private var isDatePickerShown = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,22 +55,18 @@ class InfoActivity : AppCompatActivity() {
                 .build()
 
         binding.dobSelector.setOnClickListener {
-            if (!isDatePickerShown) {
-                datePicker.show(supportFragmentManager, "DATE_OF_BIRTH_PICKER")
-                isDatePickerShown = true
+            datePicker.show(supportFragmentManager, "DATE_OF_BIRTH_PICKER")
+            datePicker.addOnPositiveButtonClickListener {
+                val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                calendar.timeInMillis = datePicker.selection!!
 
-                datePicker.addOnPositiveButtonClickListener {
-                    val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                    calendar.timeInMillis = datePicker.selection!!
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH) + 1
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-                    val year = calendar.get(Calendar.YEAR)
-                    val month = calendar.get(Calendar.MONTH) + 1
-                    val day = calendar.get(Calendar.DAY_OF_MONTH)
+                val selectedDate = "${day}/${month}/${year}"
 
-                    val selectedDate = "${day}/${month}/${year}"
-
-                    binding.dateOfBirth.editText!!.setText(selectedDate)
-                }
+                binding.dateOfBirth.editText!!.setText(selectedDate)
             }
         }
 
