@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.a2ys.conversa.R
-import com.a2ys.conversa.databinding.FragmentUserSearchBinding
+import dev.a2ys.conversa.R
+import dev.a2ys.conversa.databinding.FragmentUserSearchBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

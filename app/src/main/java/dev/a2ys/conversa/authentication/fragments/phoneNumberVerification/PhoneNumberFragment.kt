@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.a2ys.conversa.R
-import com.a2ys.conversa.databinding.FragmentPhoneNumberBinding
+import dev.a2ys.conversa.R
+import dev.a2ys.conversa.databinding.FragmentPhoneNumberBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException

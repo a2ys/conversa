@@ -7,8 +7,8 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.a2ys.conversa.R
-import com.a2ys.conversa.databinding.ActivityInfoBinding
+import dev.a2ys.conversa.R
+import dev.a2ys.conversa.databinding.ActivityInfoBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth

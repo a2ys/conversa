@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.a2ys.conversa.databinding.FragmentSignUpBinding
+import dev.a2ys.conversa.databinding.FragmentSignUpBinding
 
 class SignUpFragment : Fragment() {
 

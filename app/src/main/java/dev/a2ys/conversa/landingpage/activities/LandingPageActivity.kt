@@ -3,7 +3,7 @@ package dev.a2ys.conversa.landingpage.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.a2ys.conversa.databinding.ActivityLandingPageBinding
+import dev.a2ys.conversa.databinding.ActivityLandingPageBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

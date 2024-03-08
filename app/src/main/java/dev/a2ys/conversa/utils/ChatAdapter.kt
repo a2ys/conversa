@@ -3,7 +3,7 @@ package dev.a2ys.conversa.utils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.a2ys.conversa.databinding.ChatItemBinding
+import dev.a2ys.conversa.databinding.ChatItemBinding
 import dev.a2ys.conversa.models.Chat
 
 class ChatAdapter(private val chatList: List<Chat>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {

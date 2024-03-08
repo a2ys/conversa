@@ -6,18 +6,17 @@ plugins {
 }
 
 android {
-    namespace 'com.a2ys.conversa'
+    namespace "dev.a2ys.conversa"
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.a2ys.conversa"
+        applicationId "dev.a2ys.conversa"
         minSdk 27
         targetSdk 34
         versionCode 1
-        versionName '0.1.0'
+        versionName '0.6.0-alpha'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '-alpha'
     }
 
     buildFeatures {
@@ -63,5 +62,4 @@ dependencies {
 
     // Other dependencies
     implementation 'com.google.android.gms:play-services-auth:21.0.0'
-    implementation 'com.airbnb.android:lottie:6.0.1'
 }

@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.a2ys.conversa.R
-import com.a2ys.conversa.databinding.FragmentChatsBinding
+import dev.a2ys.conversa.R
+import dev.a2ys.conversa.databinding.FragmentChatsBinding
 import com.google.android.material.textview.MaterialTextView
 import dev.a2ys.conversa.models.Chat
 import dev.a2ys.conversa.utils.ChatAdapter

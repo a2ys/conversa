@@ -1,6 +1,6 @@
 package dev.a2ys.conversa.authentication.fragments.phoneNumberVerification
 
-import com.a2ys.conversa.R
+import dev.a2ys.conversa.R
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.a2ys.conversa.databinding.FragmentOtpVerificationBinding
+import dev.a2ys.conversa.databinding.FragmentOtpVerificationBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException

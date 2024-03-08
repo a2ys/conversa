@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.a2ys.conversa.R
-import com.a2ys.conversa.databinding.ActivityMainBinding
+import dev.a2ys.conversa.R
+import dev.a2ys.conversa.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
