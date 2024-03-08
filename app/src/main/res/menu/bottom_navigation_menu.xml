@@ -4,15 +4,15 @@
         android:id="@+id/chatsFragment"
         android:enabled="true"
         android:icon="@drawable/chat_selector"
-        android:title="Chats"/>
+        android:title="@string/chats"/>
     <item
         android:id="@+id/storiesFragment"
         android:enabled="true"
         android:icon="@drawable/sparkle_selector"
-        android:title="Updates"/>
+        android:title="@string/updates"/>
     <item
         android:id="@+id/callHistoryFragment"
         android:enabled="true"
         android:icon="@drawable/phone_selector"
-        android:title="Calls"/>
+        android:title="@string/calls"/>
 </menu>

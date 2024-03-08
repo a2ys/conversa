@@ -15,13 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/logo"
-        android:contentDescription="Logo of the app for the landing page." />
+        android:contentDescription="@string/logo_of_the_app_for_the_landing_page" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="from"
+        android:text="@string/from"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo"
@@ -32,7 +32,7 @@
         android:id="@+id/a2ys"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="a2ys"
+        android:text="@string/creator"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

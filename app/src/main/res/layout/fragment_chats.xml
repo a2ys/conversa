@@ -21,7 +21,8 @@
             android:layout_width="224dp"
             android:layout_height="224dp"
             android:src="@drawable/no_chats"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:contentDescription="@string/man_searching_for_something_with_binoculars" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/caption"
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/seed"
             android:padding="32dp"
-            android:text="where dem chats at?"
+            android:text="@string/where_dem_chats_at"
             app:layout_constraintTop_toBottomOf="@id/search_illustration"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
         android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
         android:contentDescription=""
-        android:text="Start Chat"
+        android:text="@string/start_chat"
         app:icon="@drawable/logo_icon"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

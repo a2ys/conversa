@@ -14,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/man_waiting_with_an_umbrella" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -24,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/wait_illustration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Calls section is coming later!"
+        android:text="@string/calls_section_is_coming_later"
         style="@style/TextAppearance.Conversa.HeadlineSmall"
         android:textAlignment="center"/>
 

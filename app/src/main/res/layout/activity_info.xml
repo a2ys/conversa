@@ -28,7 +28,7 @@
                 android:id="@+id/heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textColor="@color/md_theme_light_onPrimaryContainer"
                 style="@style/TextAppearance.Conversa.DisplayLarge"/>
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="phone"
                 app:endIconMode="clear_text"
-                android:hint="Phone Number"
+                android:hint="@string/phone_number"
                 app:startIconDrawable="@drawable/phone_icon"
                 android:paddingTop="32dp">
 
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
                 app:endIconMode="clear_text"
-                android:hint="Username"
+                android:hint="@string/username"
                 app:startIconDrawable="@drawable/at"
                 android:layout_marginTop="16dp">
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
                 app:endIconMode="clear_text"
-                android:hint="Name"
+                android:hint="@string/name"
                 app:startIconDrawable="@drawable/user_fill"
                 android:layout_marginTop="16dp">
 
@@ -95,8 +95,9 @@
                     style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
                     android:paddingEnd="8dp"
-                    android:hint="Date of Birth"
+                    android:hint="@string/date_of_birth"
                     app:startIconDrawable="@drawable/calendar_blank_fill"
                     android:layout_marginTop="16dp"
                     android:layout_weight="1">
@@ -115,7 +116,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingStart="8dp"
-                    android:hint="Gender"
+                    android:paddingEnd="0dp"
+                    android:hint="@string/gender"
                     app:startIconDrawable="@drawable/user_plus_fill"
                     android:layout_marginTop="16dp"
                     android:layout_weight="1">
@@ -133,7 +135,7 @@
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingStart="64dp"

@@ -14,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/woman_waiting_on_a_chair_with_a_phone_in_hand" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -24,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/wait_illustration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Updates section is coming soon!"
+        android:text="@string/updates_section_is_coming_soon"
         style="@style/TextAppearance.Conversa.HeadlineSmall"
         android:textAlignment="center"/>
 

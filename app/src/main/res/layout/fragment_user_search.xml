@@ -14,7 +14,7 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username (without @)" />
+            android:hint="@string/username_without" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_anchor="@id/search_bar"
-        android:hint="Username (without @)" >
+        android:hint="@string/username_without" >
 
         <androidx.recyclerview.widget.RecyclerView
             android:padding="16dp"
@@ -44,17 +44,16 @@
             android:layout_width="224dp"
             android:layout_height="224dp"
             android:src="@drawable/people_search"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:contentDescription="@string/woman_looking_at_photos_of_people_with_a_magnifying_glass" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/seed"
             android:padding="32dp"
-            android:text="Username, please!\nYour search awaits."
+            android:text="@string/username_please_nyour_search_awaits"
             style="@style/TextAppearance.Conversa.HeadlineSmall"
             android:textAlignment="center"/>
-
     </LinearLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

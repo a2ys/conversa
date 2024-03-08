@@ -1,16 +1,15 @@
 package dev.a2ys.conversa.authentication.fragments.phoneNumberVerification
 
+import com.a2ys.conversa.R
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.FragmentOtpVerificationBinding
-import dev.a2ys.conversa.landingpage.activities.LandingPageActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -18,6 +17,7 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dev.a2ys.conversa.landingpage.activities.LandingPageActivity
 
 class OtpVerificationFragment : Fragment() {
 
@@ -35,7 +35,9 @@ class OtpVerificationFragment : Fragment() {
         val verificationId = sharedPref.getString("ver_id", null)
         val phoneNumber = sharedPref.getString("number", null)
 
-        binding.phn.text = "+91 $phoneNumber"
+
+        val formattedNumber = String.format(getString(R.string.phone_number_format), phoneNumber)
+        binding.phn.text = formattedNumber
 
         binding.change.setOnClickListener {
             navigateToPhoneNumberFragment()

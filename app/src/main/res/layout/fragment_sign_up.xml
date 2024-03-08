@@ -24,13 +24,13 @@
             style="@style/TextAppearance.Conversa.DisplaySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up with your" />
+            android:text="@string/sign_up_with_your" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextAppearance.Conversa.DisplayLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/email"
             android:textColor="@color/md_theme_light_primary"/>
     </LinearLayout>
 
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
-            android:hint="Email"
+            android:hint="@string/email"
             app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email"
@@ -79,7 +79,7 @@
             style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password"
@@ -112,7 +112,7 @@
                 style="@style/TextAppearance.Conversa.BodyLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?" />
+                android:text="@string/already_have_an_account" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextAppearance.Conversa.BodyLarge"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:background="@drawable/dashed_underline"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textStyle="bold"
                 android:textColor="@color/md_theme_light_primary"/>
 

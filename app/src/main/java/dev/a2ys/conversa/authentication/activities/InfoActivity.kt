@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.ActivityInfoBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
@@ -24,7 +25,6 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.Calendar
 import java.util.TimeZone
-
 
 class InfoActivity : AppCompatActivity() {
 
@@ -47,7 +47,8 @@ class InfoActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
         ageCalculator = AgeCalculator()
 
-        binding.phoneNumber.editText!!.setText("+91 ${user!!.phoneNumber!!.substring(3, 13)}")
+        val formattedNumber = getString(R.string.phone_number_format, user!!.phoneNumber!!.substring(3, 13))
+        binding.phoneNumber.editText!!.setText(formattedNumber)
 
         val datePicker =
             MaterialDatePicker.Builder.datePicker()

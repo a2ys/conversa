@@ -26,13 +26,13 @@
                 style="@style/TextAppearance.Conversa.DisplaySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Continue with your" />
+                android:text="@string/continue_with_your" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextAppearance.Conversa.DisplayLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:textColor="@color/md_theme_light_primary"/>
         </LinearLayout>
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="phone"
             app:endIconMode="clear_text"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             app:startIconDrawable="@drawable/phone_icon"
             android:layout_marginTop="256dp">
 
@@ -58,7 +58,7 @@
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Get OTP"
+            android:text="@string/get_otp"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             android:layout_marginTop="32dp"

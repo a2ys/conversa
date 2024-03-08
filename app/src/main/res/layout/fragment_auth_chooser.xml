@@ -20,14 +20,14 @@
             android:id="@+id/header_welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to"
+            android:text="@string/welcome_to"
             style="@style/TextAppearance.Conversa.HeadlineLarge"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/header_conversa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Conversa"
+            android:text="@string/app_name"
             android:textColor="@color/seed"
             android:textStyle="bold"
             style="@style/TextAppearance.Conversa.DisplayLarge"/>
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Continue with Email"
+            android:text="@string/continue_with_email"
             app:layout_constraintTop_toBottomOf="@id/header_conversa"/>
 
         <com.google.android.material.button.MaterialButton
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Continue with Phone Number"/>
+            android:text="@string/continue_with_phone_number"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

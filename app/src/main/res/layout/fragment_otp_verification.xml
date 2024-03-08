@@ -25,14 +25,14 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter the OTP sent on"
+                android:text="@string/enter_the_otp_sent_on"
                 style="@style/TextAppearance.Conversa.DisplaySmall" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/phn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:textColor="@color/md_theme_light_primary"
                 style="@style/TextAppearance.Conversa.DisplayLarge" />
         </LinearLayout>
@@ -41,7 +41,7 @@
             android:id="@+id/otp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="OTP"
+            android:hint="@string/otp"
             app:startIconDrawable="@drawable/password_bold"
             app:endIconMode="clear_text"
             android:layout_marginTop="128dp">
@@ -58,7 +58,7 @@
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm OTP"
+            android:text="@string/confirm_otp"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             android:layout_marginTop="32dp"
@@ -91,7 +91,7 @@
                 style="@style/TextAppearance.Conversa.BodyLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wrong phone number?" />
+                android:text="@string/wrong_phone_number" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextAppearance.Conversa.BodyLarge"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:background="@drawable/dashed_underline"
-                android:text="Change"
+                android:text="@string/change"
                 android:textStyle="bold"
                 android:textColor="@color/md_theme_light_primary"/>
 
