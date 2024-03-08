@@ -1,17 +1,19 @@
 package dev.a2ys.conversa.main.fragments
 
-import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.a2ys.conversa.R
 import com.a2ys.conversa.databinding.FragmentUserSearchBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -43,13 +45,25 @@ class UserSearchFragment : Fragment() {
         userAdapter = UserAdapter()
         recyclerView.adapter = userAdapter
 
-        binding.search.editText!!.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                searchUsers(s.toString())
+        binding.searchView.editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                searchUsers(p0.toString())
             }
+
+            override fun afterTextChanged(p0: Editable?) {}
+
         })
+
+        requireActivity().onBackPressedDispatcher.addCallback {
+            if (binding.searchView.isShowing) {
+                binding.searchView.hide()
+            } else {
+                Navigation.findNavController(requireActivity(), R.id.main_navigation)
+                    .navigate(R.id.action_userSearchFragment_to_chatsFragment)
+            }
+        }
 
         return binding.root
     }
@@ -73,12 +87,21 @@ class UserSearchFragment : Fragment() {
                     user?.let { userList.add(it) }
                 }
                 userList.sortBy { it.username.length }
-                userAdapter.submitList(userList)
+
+                if (userList.isNotEmpty()) {
+                    userAdapter.submitList(userList)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("HANDLE DB ERROR")
+                showError("Failed to fetch users: ${error.message}")
             }
         })
+    }
+
+    private fun showError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .setAction("Got it") {}
+            .show()
     }
 }

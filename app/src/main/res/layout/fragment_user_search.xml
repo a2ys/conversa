@@ -1,30 +1,60 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="dev.a2ys.conversa.main.fragments.UserSearchFragment"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context="dev.a2ys.conversa.main.fragments.UserSearchFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="phone"
-        app:endIconMode="clear_text"
-        android:hint="Username (without @)">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username (without @)" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.search.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchor="@id/search_bar"
+        android:hint="Username (without @)" >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="16dp"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:enabled="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:visibility="visible"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="16dp"
-        android:id="@+id/recyclerView"
+    </com.google.android.material.search.SearchView>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="224dp"
+            android:layout_height="224dp"
+            android:src="@drawable/people_search"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/seed"
+            android:padding="32dp"
+            android:text="Username, please!\nYour search awaits."
+            style="@style/TextAppearance.Conversa.HeadlineSmall"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

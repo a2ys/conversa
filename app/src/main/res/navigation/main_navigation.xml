@@ -43,5 +43,9 @@
         android:id="@+id/userSearchFragment"
         android:name="dev.a2ys.conversa.main.fragments.UserSearchFragment"
         android:label="fragment_user_search"
-        tools:layout="@layout/fragment_user_search" />
+        tools:layout="@layout/fragment_user_search" >
+        <action
+            android:id="@+id/action_userSearchFragment_to_chatsFragment"
+            app:destination="@id/chatsFragment" />
+    </fragment>
 </navigation>
